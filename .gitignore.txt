@@ -1,0 +1,15 @@
+# Ignorar la carpeta de configuración de Visual Studio
+.vs/
+# Ignorar archivos de compilación y temporales
+bin/
+obj/
+# Ignorar archivos generados por ASP.NET
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+# Ignorar archivos de la base de datos local
+*.mdf
+*.ldf
+# Ignorar archivos de log
+*.log
