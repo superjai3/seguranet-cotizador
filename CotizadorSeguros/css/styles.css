@@ -31,10 +31,22 @@ h2 {
   margin-bottom: 10px;
 }
 
+h3 {
+  color: #ee5c5c;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+h4 {
+  color: #4a90e2;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
 label {
   display: block;
   font-weight: 600;
-  color: #333;
+  color: #4a90e2;
   margin-bottom: 5px;
 }
 
@@ -72,6 +84,17 @@ input[readonly] {
 }
 
 #finalPriceDisplay {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #4a90e2;
+  background-color: #e9f5ff;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+#finalPriceDisplay2 {
   font-size: 1.25rem;
   font-weight: bold;
   color: #4a90e2;
@@ -157,4 +180,69 @@ input[readonly] {
   background-color: #b0b0b0;
   cursor: not-allowed;
   opacity: 0.7;
+}
+
+.logo-navbar {
+  height: 15rem; /* Ajusta la altura según el tamaño del menú */
+  width: auto; /* Mantén la proporción del logo */
+  margin-right: 10px; /* Espacio opcional entre el logo y el resto del menú */
+}
+
+.d-none {
+  display: none !important;
+}
+.text-danger {
+  color: red;
+}
+.valores-final-seguro {
+  font-size: 1rem;
+  font-weight: bolder;
+}
+.premio {
+  margin-top: 10px;
+}
+.iva {
+  margin-top: 10px;
+}
+.prima-final {
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none !important;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  max-height: 80%;
+  overflow-y: auto;
+}
+.close-button {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }

@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotizador de Autos</title>
     <link rel="stylesheet" href="/CotizadorSeguros/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
+    <!-- Ícono de Home más estilizado (Font Awesome) en la parte superior derecha -->
+    <a href="https://localhost:44395/Home/Index"
+        style="position: absolute; top: 10px; right: 10px; font-size: 30px; color: #4B5563; text-decoration: none;"
+        title="Ir al inicio">
+        <i class="fas fa-home-lg-alt"></i>
+    </a>
+
+
     <div class="container" id="formulario">
         <header>
             <h1>Cotizador Automotor</h1>
@@ -27,11 +36,11 @@
                 <label for="dni">DNI:</label>
                 <input type="text" id="dni" name="dni" required>
                 <label for="fecha-nacimiento">Fecha de Nacimiento:</label>
-                <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" required>
+                <input type="date" id="fechaNacimiento" name="fecha-nacimiento" required>
                 <label for="domicilio">Domicilio:</label>
                 <input type="text" id="domicilio" name="domicilio" required>
                 <label for="codigo-postal">Código Postal:</label>
-                <input type="text" id="codigo-postal" name="codigo-postal" required>
+                <input type="text" id="codigoPostal" name="codigo-postal" required>
                 <label for="telefono">Teléfono:</label>
                 <input type="tel" id="telefono" name="telefono" required>
                 <label for="mail">Mail:</label>
@@ -85,6 +94,10 @@
                 <select id="version" disabled>
                     <option value="">Selecciona una versión</option>
                 </select>
+                <div>
+                    <span id="msgNoVersions" class="d-none text-danger">No se encontraron versiones para el modelo
+                        seleccionado</span>
+                </div>
             </div>
 
             <div class="input-group">
@@ -94,7 +107,7 @@
 
             <!-- Precio Base sin Adicionales -->
             <div id="priceDisplay" class="price-display">
-                Precio Base sin Adicionales: $0.00
+                Prima Técnica: $0.00
             </div>
 
         </section>
@@ -180,10 +193,16 @@
                 </select>
             </div>
 
-            <!-- Precio Base con Adicionales-->
+            <!-- Precio Base con Adicionales
             <div id="finalPriceDisplay" class="finalPriceDisplay">
                 Precio Base con Adicionales: $0.00
+            </div>-->
+
+
+            <div id="finalPriceDisplay" class="finalPriceDisplay">
+                Prima Final
             </div>
+
         </section>
 
         <br>
@@ -206,18 +225,18 @@
             <h2>Valor Final del Seguro</h2>
 
             <!--PRIMA FINAL-->
-            <div id="primaFinal" class="prima-final">
-                <h2>Prima Final</h2>
+            <div class="prima-final">
+                <span class="valores-final-seguro">Prima Final: <span id="primaFinal">$0.00</span> </span>
             </div>
 
             <!--Impuestos-->
-            <div id="iva" class="iva">
-                <h2>Impuesto IVA</h2>
+            <div class="iva">
+                <span class="valores-final-seguro">Impuesto IVA: <span id="iva">$0.00</span></span>
             </div>
 
             <!--PREMIO-->
-            <div id="premio" class="premio">
-                <h2>Premio Final</h2>
+            <div class="premio">
+                <span class="valores-final-seguro">Premio Final: <span id="premio">$0.00</span></span>
             </div>
 
             <br>
@@ -275,19 +294,25 @@
 
             <!--Volver a Cotizar-->
             <button id="clearAll" class="styled-button clearAll"
-                data-tooltip="Limpiar para realizar una nueva cotización">Volver a Cotizar</button>
+                data-tooltip="Limpiar para realizar una nueva cotización" onclick="limpiarDatos()">Volver a
+                Cotizar</button>
 
             <!--Guardar Presupuesto-->
-            <button id="saveButton" class="styled-button" data-tooltip="Guardar el presupuesto actual">Guardar
-                Presupuesto</button>
+            <button id="saveButton" class="styled-button" data-tooltip="Ver el presupuesto actual">Ver
+                Resumen</button>
 
             <!--Imprimir Presupuesto-->
             <button id="printButton" class="styled-button" data-tooltip="Imprimir el presupuesto">Imprimir
                 Presupuesto</button>
 
             <!--Emisión-->
-            <button id="contractButton" class="styled-button" data-tooltip="Emitir la póliza actual">Emitir
-                Póliza</button>
+            <!-- <button id="contractButton" class="styled-button" data-tooltip="Emitir la póliza actual">Emitir
+                Póliza</button> -->
+
+            <!-- Salir del Cotizador -->
+            <button id="printButton" class="styled-button" data-tooltip="Imprimir el presupuesto"
+                onclick="window.location.href='https://localhost:44395/Home/Index';">Salir del Cotizador</button>
+
 
         </section>
 
@@ -311,7 +336,31 @@
 
     </div>
 
+
+    <!-- Modal -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Resumen del Presupuesto</h2>
+            <table id="modalTable" class="table">
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Información</th>
+                    </tr>
+                </thead>
+                <tbody id="detailsTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
     <script src="/CotizadorSeguros/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
